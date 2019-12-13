@@ -1,0 +1,240 @@
+[1] "Teste de hipótese - IDADE X Exponencial"
+
+Results of Hypothesis Test
+--------------------------
+
+Alternative Hypothesis:          two-sided
+
+Test Name:                       One-sample Kolmogorov-Smirnov test
+
+Data:                            DadosMedicos$IDADE
+
+Test Statistic:                  D = 0.3727556
+
+P-value:                         0
+
+[1] "Teste de hipótese - IDADE X Gaussiana"
+
+Results of Hypothesis Test
+--------------------------
+
+Alternative Hypothesis:          two-sided
+
+Test Name:                       One-sample Kolmogorov-Smirnov test
+
+Data:                            DadosMedicos$IDADE
+
+Test Statistic:                  D = 0.04402252
+
+P-value:                         0.02129072
+
+[1] "Teste de hipótese - IDADE X Lognormal"
+
+Results of Hypothesis Test
+--------------------------
+
+Alternative Hypothesis:          two-sided
+
+Test Name:                       One-sample Kolmogorov-Smirnov test
+
+Data:                            DadosMedicos$IDADE
+
+Test Statistic:                  D = 0.08467285
+
+P-value:                         1.005974e-07
+
+[1] "Teste de hipótese - IDADE X Weibull"
+
+Results of Hypothesis Test
+--------------------------
+
+Alternative Hypothesis:          two-sided
+
+Test Name:                       One-sample Kolmogorov-Smirnov test
+
+Data:                            DadosMedicos$IDADE
+
+Test Statistic:                  D = 0.0330373
+
+P-value:                         0.1547867
+
+[1] "Teste de hipótese - Peso X Exponencial"
+
+Results of Hypothesis Test
+--------------------------
+
+Alternative Hypothesis:          two-sided
+
+Test Name:                       One-sample Kolmogorov-Smirnov test
+
+Data:                            DadosMedicos$Peso
+
+Test Statistic:                  D = 0.495441
+
+P-value:                         0
+
+[1] "Teste de hipótese - Peso X Gaussiana"
+
+Results of Hypothesis Test
+--------------------------
+
+Alternative Hypothesis:          two-sided
+
+Test Name:                       One-sample Kolmogorov-Smirnov test
+
+Data:                            DadosMedicos$Peso
+
+Test Statistic:                  D = 0.06663052
+
+P-value:                         6.047165e-05
+
+[1] "Teste de hipótese - Peso X Lognormal"
+
+Results of Hypothesis Test
+--------------------------
+
+Alternative Hypothesis:          two-sided
+
+Test Name:                       One-sample Kolmogorov-Smirnov test
+
+Data:                            DadosMedicos$Peso
+
+Test Statistic:                  D = 0.03231203
+
+P-value:                         0.1729427
+
+[1] "Teste de hipótese - Peso X Weibull"
+
+Results of Hypothesis Test
+--------------------------
+
+Alternative Hypothesis:          two-sided
+
+Test Name:                       One-sample Kolmogorov-Smirnov test
+
+Data:                            DadosMedicos$Peso
+
+Test Statistic:                  D = 0.1032176
+
+P-value:                         2.854561e-11
+
+[1] "Teste de hipótese - CargaFinal X Exponencial"
+
+Results of Hypothesis Test
+--------------------------
+
+Alternative Hypothesis:          two-sided
+
+Test Name:                       One-sample Kolmogorov-Smirnov test
+
+Data:                            DadosMedicos$CargaFinal
+
+Test Statistic:                  D = 0.2865163
+
+P-value:                         0
+
+[1] "Teste de hipótese - CargaFinal X Gaussiana"
+
+Results of Hypothesis Test
+--------------------------
+
+Alternative Hypothesis:          two-sided
+
+Test Name:                       One-sample Kolmogorov-Smirnov test
+
+Data:                            DadosMedicos$CargaFinal
+
+Test Statistic:                  D = 0.03916339
+
+P-value:                         0.05491148
+
+[1] "Teste de hipótese - CargaFinal X Lognormal"
+
+Results of Hypothesis Test
+--------------------------
+
+Alternative Hypothesis:          two-sided
+
+Test Name:                       One-sample Kolmogorov-Smirnov test
+
+Data:                            DadosMedicos$CargaFinal
+
+Test Statistic:                  D = 0.08034078
+
+P-value:                         5.373948e-07
+
+[1] "Teste de hipótese - CargaFinal X Weibull"
+
+Results of Hypothesis Test
+--------------------------
+
+Alternative Hypothesis:          two-sided
+
+Test Name:                       One-sample Kolmogorov-Smirnov test
+
+Data:                            DadosMedicos$CargaFinal
+
+Test Statistic:                  D = 0.02457064
+
+P-value:                         0.4788417
+
+[1] "Teste de hipótese - VO2 Máximo X Exponencial"
+
+Results of Hypothesis Test
+--------------------------
+
+Alternative Hypothesis:          two-sided
+
+Test Name:                       One-sample Kolmogorov-Smirnov test
+
+Data:                            DadosMedicos$VO2MedidoMáximo
+
+Test Statistic:                  D = 0.3348897
+
+P-value:                         0
+
+[1] "Teste de hipótese - VO2 Máximo X Gaussiana"
+
+Results of Hypothesis Test
+--------------------------
+
+Alternative Hypothesis:          two-sided
+
+Test Name:                       One-sample Kolmogorov-Smirnov test
+
+Data:                            DadosMedicos$VO2MedidoMáximo
+
+Test Statistic:                  D = 0.04450684
+
+P-value:                         0.01925495
+
+[1] "Teste de hipótese - VO2 Máximo X Lognormal"
+
+Results of Hypothesis Test
+--------------------------
+
+Alternative Hypothesis:          two-sided
+
+Test Name:                       One-sample Kolmogorov-Smirnov test
+
+Data:                            DadosMedicos$VO2MedidoMáximo
+
+Test Statistic:                  D = 0.04056923
+
+P-value:                         0.04222412
+
+[1] "Teste de hipótese - VO2 Máximo X Weibull"
+
+Results of Hypothesis Test
+--------------------------
+
+Alternative Hypothesis:          two-sided
+
+Test Name:                       One-sample Kolmogorov-Smirnov test
+
+Data:                            DadosMedicos$VO2MedidoMáximo
+
+Test Statistic:                  D = 0.03674681
+
+P-value:                         0.08440764
+

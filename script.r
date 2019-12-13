@@ -11,11 +11,12 @@ DadosMedicos <-
 
 
 ## Histograma e Distribuição Empírica das Variáveis ##
+bin = as.integer(1+3.3*log10(nrow(DadosMedicos)))
 
 #IDADE
 png("Histogramas/histograma_idade.png")
 hist(DadosMedicos$IDADE,
-     breaks = "Freedman-Diaconis",
+     breaks = seq(min(DadosMedicos$IDADE), max(DadosMedicos$IDADE), length.out = bin+1),
      main = "Histograma de IDADE",
      col = "darkmagenta",
      xlab = "Idade (em anos)")
@@ -33,7 +34,7 @@ dev.off()
 #PESO#
 png("Histogramas/histograma_Peso.png")
 hist(DadosMedicos$Peso,
-     breaks = "Freedman-Diaconis",
+     breaks = seq(min(DadosMedicos$Peso), max(DadosMedicos$Peso), length.out = bin+1),
      main = "Histograma de Peso",
      col = "darkmagenta",
      xlab = "Peso (em kg)")
@@ -51,7 +52,7 @@ dev.off()
 #CargaFinal#
 png("Histogramas/histograma_CargaFinal.png")
 hist(DadosMedicos$CargaFinal,
-     breaks = "Freedman-Diaconis",
+     breaks = seq(min(DadosMedicos$CargaFinal), max(DadosMedicos$CargaFinal), length.out = bin+1),
      main = "Histograma de CargaFinal",
      col = "darkmagenta",
      xlab = "Carga Final")
@@ -69,7 +70,7 @@ dev.off()
 #VO2 Medido Maximo#
 png("Histogramas/histograma_VO2Max.png")
 hist(DadosMedicos$VO2MedidoMáximo,
-     breaks = "Freedman-Diaconis",
+     breaks = seq(min(DadosMedicos$VO2MedidoMáximo), max(DadosMedicos$VO2MedidoMáximo), length.out = bin+1),
      main = "Histograma de VO2 Máximo",
      col = "darkmagenta",
      xlab = "VO2 Máximo (em mL/kg/min)")
@@ -173,8 +174,6 @@ legend("topleft", legend="lognormal", lty = 1, col = 'darkmagenta', lwd = 2, bty
 legend("bottom", legend="weibull", lty = 1, col = 'darkgreen', lwd = 2, bty = 'n')
 dev.off()
 
-############## FIM IDADE ################
-
 #Peso#
 #-Exponencial-#
 
@@ -228,8 +227,6 @@ legend("left", legend="gaussiana", lty = 1, col = 'blue', lwd = 2, bty = "n")
 legend("topleft", legend="lognormal", lty = 1, col = 'darkmagenta', lwd = 2, bty = "n")
 legend("bottom", legend="weibull", lty = 1, col = 'darkgreen', lwd = 2, bty = 'n')
 dev.off()
-
-############ FIM PESO ##############
 
 #CargaFinal#
 #-Exponencial-#
@@ -428,3 +425,80 @@ dev.off()
 png("QQPlots/qqplot_VO2Max_weibull.png")
 qqPlot(DadosMedicos$VO2MedidoMáximo, distribution = 'weibull', param.list = list(shape = VO2Max_weibull_shape, scale = VO2Max_weibull_scale), add.line = TRUE)
 dev.off()
+
+#### TESTE DE HIPÓTESE ####
+### KOMOLGOROV-SMIRNOV ###
+
+## IDADE ##
+
+#exponencial#
+print ('Teste de hipótese - IDADE X Exponencial')
+ks.test(DadosMedicos$IDADE, 'pexp', rate = idade_exponencial_lambda)
+
+#gaussiana#
+print ('Teste de hipótese - IDADE X Gaussiana')
+ks.test(DadosMedicos$IDADE, 'pnorm', mean = idade_gaussiana_media, sd = sqrt(idade_gaussiana_sd2))
+
+#lognormal#
+print ('Teste de hipótese - IDADE X Lognormal')
+ks.test(DadosMedicos$IDADE, 'plnorm', meanlog = idade_lognormal_mu, sd = sqrt(idade_lognormal_sd2))
+
+#weibull#
+print ('Teste de hipótese - IDADE X Weibull')
+ks.test(DadosMedicos$IDADE, 'pweibull', shape = idade_weibull_shape, scale = idade_weibull_scale)
+
+## Peso ##
+
+#exponencial#
+print ('Teste de hipótese - Peso X Exponencial')
+ks.test(DadosMedicos$Peso, 'pexp', rate = Peso_exponencial_lambda)
+
+#gaussiana#
+print ('Teste de hipótese - Peso X Gaussiana')
+ks.test(DadosMedicos$Peso, 'pnorm', mean = Peso_gaussiana_media, sd = sqrt(Peso_gaussiana_sd2))
+
+#lognormal#
+print ('Teste de hipótese - Peso X Lognormal')
+ks.test(DadosMedicos$Peso, 'plnorm', meanlog = Peso_lognormal_mu, sd = sqrt(Peso_lognormal_sd2))
+
+#weibull#
+print ('Teste de hipótese - Peso X Weibull')
+ks.test(DadosMedicos$Peso, 'pweibull', shape = Peso_weibull_shape, scale = Peso_weibull_scale)
+
+## CargaFinal ##
+
+#exponencial#
+print ('Teste de hipótese - CargaFinal X Exponencial')
+ks.test(DadosMedicos$CargaFinal, 'pexp', rate = CargaFinal_exponencial_lambda)
+
+#gaussiana#
+print ('Teste de hipótese - CargaFinal X Gaussiana')
+ks.test(DadosMedicos$CargaFinal, 'pnorm', mean = CargaFinal_gaussiana_media, sd = sqrt(CargaFinal_gaussiana_sd2))
+
+#lognormal#
+print ('Teste de hipótese - CargaFinal X Lognormal')
+ks.test(DadosMedicos$CargaFinal, 'plnorm', meanlog = CargaFinal_lognormal_mu, sd = sqrt(CargaFinal_lognormal_sd2))
+
+#weibull#
+print ('Teste de hipótese - CargaFinal X Weibull')
+ks.test(DadosMedicos$CargaFinal, 'pweibull', shape = CargaFinal_weibull_shape, scale = CargaFinal_weibull_scale)
+
+## VO2 Máximo ##
+
+#exponencial#
+print ('Teste de hipótese - VO2 Máximo X Exponencial')
+ks.test(DadosMedicos$VO2MedidoMáximo, 'pexp', rate = VO2Max_exponencial_lambda)
+
+#gaussiana#
+print ('Teste de hipótese - VO2 Máximo X Gaussiana')
+ks.test(DadosMedicos$VO2MedidoMáximo, 'pnorm', mean = VO2Max_gaussiana_media, sd = sqrt(VO2Max_gaussiana_sd2))
+
+#lognormal#
+print ('Teste de hipótese - VO2 Máximo X Lognormal')
+ks.test(DadosMedicos$VO2MedidoMáximo, 'plnorm', meanlog = VO2Max_lognormal_mu, sd = sqrt(VO2Max_lognormal_sd2))
+
+#weibull#
+print ('Teste de hipótese - VO2 Máximo X Weibull')
+ks.test(DadosMedicos$VO2MedidoMáximo, 'pweibull', shape = VO2Max_weibull_shape, scale = VO2Max_weibull_scale)
+
+###### Coeficiente de Correlação Amostral #####
