@@ -512,6 +512,8 @@ modelo_regressao_idade <- lm(DadosMedicos$VO2MedidoMáximo~DadosMedicos$IDADE)
 abline(modelo_regressao_idade, col = 'red')
 dev.off()
 
+coeficientes_regressao_idade = modelo_regressao_idade$coefficients
+
 ## Peso e VO2Máximo ##
 correlacao_Peso_VO2Max = cor(DadosMedicos$Peso, DadosMedicos$VO2MedidoMáximo)
 png('ScatterPlots/scatterplot_Peso_VO2Max.png')
@@ -521,6 +523,7 @@ modelo_regressao_peso <- lm(DadosMedicos$VO2MedidoMáximo~DadosMedicos$Peso)
 abline(modelo_regressao_peso, col = 'red')
 dev.off()
 
+coeficientes_regressao_peso = modelo_regressao_peso$coefficients
 
 ## CargaFinal e VO2Máximo ##
 correlacao_CargaFinal_VO2Max = cor(DadosMedicos$CargaFinal, DadosMedicos$VO2MedidoMáximo)
@@ -530,6 +533,8 @@ plot(DadosMedicos$CargaFinal, DadosMedicos$VO2MedidoMáximo,
 modelo_regressao_CargaFinal <- lm(DadosMedicos$VO2MedidoMáximo~DadosMedicos$CargaFinal)
 abline(modelo_regressao_CargaFinal, col = 'red')
 dev.off()
+
+coeficientes_regressao_CargaFinal = modelo_regressao_CargaFinal$coefficients
 
 ##### Bayesian Inference ######
 ## Variavel escolhida = Carga Final ##
