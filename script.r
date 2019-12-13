@@ -27,7 +27,7 @@ idade_densidade = density(DadosMedicos$IDADE)
 plot(idade_densidade, main = "PDF - IDADE")
 dev.off()
 
-png("DistribuicaoEmpirica/distempirica_idade.png")
+png("CDFEmpirica/distempirica_idade.png")
 plot(ecdf(DadosMedicos$IDADE), main = 'CDF Empirica - IDADE')
 dev.off()
 
@@ -45,7 +45,7 @@ peso_densidade = density(DadosMedicos$Peso)
 plot(peso_densidade, main = "PDF - PESO")
 dev.off()
 
-png("DistribuicaoEmpirica/distempirica_Peso.png")
+png("CDFEmpirica/distempirica_Peso.png")
 plot(ecdf(DadosMedicos$Peso), main = 'CDF Empirica - Peso')
 dev.off()
 
@@ -63,7 +63,7 @@ CargaFinal_densidade = density(DadosMedicos$CargaFinal)
 plot(CargaFinal_densidade, main = "PDF - Carga Final")
 dev.off()
 
-png("DistribuicaoEmpirica/distempirica_CargaFinal.png")
+png("CDFEmpirica/distempirica_CargaFinal.png")
 plot(ecdf(DadosMedicos$CargaFinal), main = 'CDF Empirica - CargaFinal')
 dev.off()
 
@@ -81,7 +81,7 @@ VO2Max_densidade = density(DadosMedicos$VO2MedidoMáximo)
 plot(VO2Max_densidade, main = "PDF - VO2 Máximo")
 dev.off()
 
-png("DistribuicaoEmpirica/distempirica_VO2Max.png")
+png("CDFEmpirica/distempirica_VO2Max.png")
 plot(ecdf(DadosMedicos$VO2MedidoMáximo), main = 'CDF Empirica - VO2Max')
 dev.off()
 
@@ -531,5 +531,137 @@ modelo_regressao_CargaFinal <- lm(DadosMedicos$VO2MedidoMáximo~DadosMedicos$Car
 abline(modelo_regressao_CargaFinal, col = 'red')
 dev.off()
 
+##### Bayesian Inference ######
+## Variavel escolhida = Carga Final ##
+# intervalos: 30.0 110.4 190.8 271.2 351.6 432.0 #
 
+hipoteses = c('H(30.0 - 110.4)', 'H(110.4 - 190.8)', 'H(190.8 - 271.2)', 'H(271.2 - 351.6)', 'H(351.6 432.0)')
+#Abaixo de 35#
 
+dentro_do_intervalo = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 30.000 & DadosMedicos$CargaFinal < 110.4])
+com_vo2_menor = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 30.000 & DadosMedicos$CargaFinal < 110.4 & DadosMedicos$VO2MedidoMáximo < 35.0])
+under35_hipotese_1 = c(dentro_do_intervalo/nrow(DadosMedicos),
+                       com_vo2_menor/dentro_do_intervalo,
+                       com_vo2_menor/dentro_do_intervalo*dentro_do_intervalo/nrow(DadosMedicos),
+                       0)
+
+dentro_do_intervalo = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 110.4 & DadosMedicos$CargaFinal < 190.8])
+com_vo2_menor = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 110.4 & DadosMedicos$CargaFinal < 190.8 & DadosMedicos$VO2MedidoMáximo < 35.0])
+under35_hipotese_2 = c(dentro_do_intervalo/nrow(DadosMedicos),
+                       com_vo2_menor/dentro_do_intervalo,
+                       com_vo2_menor/dentro_do_intervalo*dentro_do_intervalo/nrow(DadosMedicos),
+                       0)
+
+dentro_do_intervalo = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 190.8 & DadosMedicos$CargaFinal < 271.2])
+com_vo2_menor = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 190.8 & DadosMedicos$CargaFinal < 271.2 & DadosMedicos$VO2MedidoMáximo < 35.0])
+under35_hipotese_3 = c(dentro_do_intervalo/nrow(DadosMedicos),
+                       com_vo2_menor/dentro_do_intervalo,
+                       com_vo2_menor/dentro_do_intervalo*dentro_do_intervalo/nrow(DadosMedicos),
+                       0)
+
+dentro_do_intervalo = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 271.2 & DadosMedicos$CargaFinal < 351.6])
+com_vo2_menor = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 271.2 & DadosMedicos$CargaFinal < 351.6 & DadosMedicos$VO2MedidoMáximo < 35.0])
+under35_hipotese_4 = c(dentro_do_intervalo/nrow(DadosMedicos),
+                       com_vo2_menor/dentro_do_intervalo,
+                       com_vo2_menor/dentro_do_intervalo*dentro_do_intervalo/nrow(DadosMedicos),
+                       0)
+
+dentro_do_intervalo = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 351.6 & DadosMedicos$CargaFinal <= 432.0])
+com_vo2_menor = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 351.6 & DadosMedicos$CargaFinal <= 432.0 & DadosMedicos$VO2MedidoMáximo < 35.0])
+under35_hipotese_5 = c(dentro_do_intervalo/nrow(DadosMedicos),
+                       com_vo2_menor/dentro_do_intervalo,
+                       com_vo2_menor/dentro_do_intervalo*dentro_do_intervalo/nrow(DadosMedicos),
+                       0)
+
+VO2Max_under35_table = matrix(
+  c(under35_hipotese_1, under35_hipotese_2, under35_hipotese_3, under35_hipotese_4, under35_hipotese_5),
+  nrow = 5, ncol = 4,
+  byrow = TRUE, dimnames = list(
+    hipoteses,
+    c('Prior', 'Likelihood', 'BayesNum', 'Posterior'))
+)
+
+prob_under35 = sum(VO2Max_under35_table[11:15])
+
+for (value in c(16:20)) {
+  VO2Max_under35_table[value] = VO2Max_under35_table[value - 5]/prob_under35
+}
+
+print(VO2Max_under35_table)
+print(prob_under35)
+
+#Igual ou acima de 35#
+
+dentro_do_intervalo = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 30.000 & DadosMedicos$CargaFinal < 110.4])
+com_vo2_maior = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 30.000 & DadosMedicos$CargaFinal < 110.4 & DadosMedicos$VO2MedidoMáximo >= 35.0])
+above35_hipotese_1 = c(dentro_do_intervalo/nrow(DadosMedicos),
+                       com_vo2_maior/dentro_do_intervalo,
+                       com_vo2_maior/dentro_do_intervalo*dentro_do_intervalo/nrow(DadosMedicos),
+                       0)
+
+dentro_do_intervalo = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 110.4 & DadosMedicos$CargaFinal < 190.8])
+com_vo2_maior = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 110.4 & DadosMedicos$CargaFinal < 190.8 & DadosMedicos$VO2MedidoMáximo >= 35.0])
+above35_hipotese_2 = c(dentro_do_intervalo/nrow(DadosMedicos),
+                       com_vo2_maior/dentro_do_intervalo,
+                       com_vo2_maior/dentro_do_intervalo*dentro_do_intervalo/nrow(DadosMedicos),
+                       0)
+
+dentro_do_intervalo = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 190.8 & DadosMedicos$CargaFinal < 271.2])
+com_vo2_maior = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 190.8 & DadosMedicos$CargaFinal < 271.2 & DadosMedicos$VO2MedidoMáximo >= 35.0])
+above35_hipotese_3 = c(dentro_do_intervalo/nrow(DadosMedicos),
+                       com_vo2_maior/dentro_do_intervalo,
+                       com_vo2_maior/dentro_do_intervalo*dentro_do_intervalo/nrow(DadosMedicos),
+                       0)
+
+dentro_do_intervalo = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 271.2 & DadosMedicos$CargaFinal < 351.6])
+com_vo2_maior = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 271.2 & DadosMedicos$CargaFinal < 351.6 & DadosMedicos$VO2MedidoMáximo >= 35.0])
+above35_hipotese_4 = c(dentro_do_intervalo/nrow(DadosMedicos),
+                       com_vo2_maior/dentro_do_intervalo,
+                       com_vo2_maior/dentro_do_intervalo*dentro_do_intervalo/nrow(DadosMedicos),
+                       0)
+
+dentro_do_intervalo = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 351.6 & DadosMedicos$CargaFinal <= 432.0])
+com_vo2_maior = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 351.6 & DadosMedicos$CargaFinal <= 432.0 & DadosMedicos$VO2MedidoMáximo >= 35.0])
+above35_hipotese_5 = c(dentro_do_intervalo/nrow(DadosMedicos),
+                       com_vo2_maior/dentro_do_intervalo,
+                       com_vo2_maior/dentro_do_intervalo*dentro_do_intervalo/nrow(DadosMedicos),
+                       0)
+
+VO2Max_above35_table = matrix(
+  c(above35_hipotese_1, above35_hipotese_2, above35_hipotese_3, above35_hipotese_4, above35_hipotese_5),
+  nrow = 5, ncol = 4,
+  byrow = TRUE, dimnames = list(
+    hipoteses,
+    c('Prior', 'Likelihood', 'BayesNum', 'Posterior'))
+)
+
+prob_above35 = sum(VO2Max_above35_table[11:15])
+
+for (value in c(16:20)) {
+  VO2Max_above35_table[value] = VO2Max_above35_table[value - 5]/prob_above35
+}
+
+print(VO2Max_above35_table)
+print(prob_above35)
+
+## Prediction ##
+
+priors = VO2Max_under35_table[1:5]
+likelihood1 = VO2Max_under35_table[6:10]
+BayesNum1 = VO2Max_under35_table[11:15]
+Likelihood2 = VO2Max_above35_table[6:10]
+BayesNum2 = BayesNum1*Likelihood2
+prob_to_get_better = sum(BayesNum2[1:5])
+posterior = BayesNum2/prob_to_get_better
+
+VO2Max_prediction_table = matrix(
+  c(priors, likelihood1, BayesNum1, Likelihood2, BayesNum2, posterior),
+  nrow = 5, ncol = 6,
+  dimnames = list(
+    hipoteses,
+    c('Prior 1', 'Likelihood1', 'BayesNum1', 'Likelihood2', 'BayesNum2', 'Posterior')
+  )
+)
+
+print (VO2Max_prediction_table)
+print(prob_to_get_better)
