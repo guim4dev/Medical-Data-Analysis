@@ -501,4 +501,35 @@ ks.test(DadosMedicos$VO2MedidoMáximo, 'plnorm', meanlog = VO2Max_lognormal_mu, 
 print ('Teste de hipótese - VO2 Máximo X Weibull')
 ks.test(DadosMedicos$VO2MedidoMáximo, 'pweibull', shape = VO2Max_weibull_shape, scale = VO2Max_weibull_scale)
 
-###### Coeficiente de Correlação Amostral #####
+###### Coeficiente de Correlação Amostral e ScatterPlot#####
+
+## Idade e VO2Máximo ##
+correlacao_idade_VO2Max = cor(DadosMedicos$IDADE, DadosMedicos$VO2MedidoMáximo)
+png('ScatterPlots/scatterplot_idade_VO2Max.png')
+plot(DadosMedicos$IDADE, DadosMedicos$VO2MedidoMáximo,
+     xlab = 'Idade', ylab = 'VO2 Máximo')
+modelo_regressao_idade <- lm(DadosMedicos$VO2MedidoMáximo~DadosMedicos$IDADE)
+abline(modelo_regressao_idade, col = 'red')
+dev.off()
+
+## Peso e VO2Máximo ##
+correlacao_Peso_VO2Max = cor(DadosMedicos$Peso, DadosMedicos$VO2MedidoMáximo)
+png('ScatterPlots/scatterplot_Peso_VO2Max.png')
+plot(DadosMedicos$Peso, DadosMedicos$VO2MedidoMáximo,
+     xlab = 'Peso', ylab = 'VO2 Máximo')
+modelo_regressao_peso <- lm(DadosMedicos$VO2MedidoMáximo~DadosMedicos$Peso)
+abline(modelo_regressao_peso, col = 'red')
+dev.off()
+
+
+## CargaFinal e VO2Máximo ##
+correlacao_CargaFinal_VO2Max = cor(DadosMedicos$CargaFinal, DadosMedicos$VO2MedidoMáximo)
+png('ScatterPlots/scatterplot_CargaFinal_VO2Max.png')
+plot(DadosMedicos$CargaFinal, DadosMedicos$VO2MedidoMáximo,
+     xlab = 'CargaFinal', ylab = 'VO2 Máximo')
+modelo_regressao_CargaFinal <- lm(DadosMedicos$VO2MedidoMáximo~DadosMedicos$CargaFinal)
+abline(modelo_regressao_CargaFinal, col = 'red')
+dev.off()
+
+
+
