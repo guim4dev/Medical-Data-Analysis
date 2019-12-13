@@ -3,7 +3,7 @@
 ## Importando os Dados ##
 DadosMedicos <-
   read.table(
-    "~/Projects/FinalProjectCOE241/Dados-medicos.csv",
+    "Dados-medicos.csv",
     quote = "\"",
     comment.char = "",
     header = TRUE
