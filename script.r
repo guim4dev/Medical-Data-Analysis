@@ -642,17 +642,17 @@ print(prob_above35)
 priors = VO2Max_under35_table[1:5]
 likelihood1 = VO2Max_under35_table[6:10]
 BayesNum1 = VO2Max_under35_table[11:15]
+posterior1 = VO2Max_under35_table[16:20]
 Likelihood2 = VO2Max_above35_table[6:10]
-BayesNum2 = BayesNum1*Likelihood2
-prob_to_get_better = sum(BayesNum2[1:5])
-posterior = BayesNum2/prob_to_get_better
+predictions = posterior1 * Likelihood2
+prob_to_get_better = sum(predictions)
 
 VO2Max_prediction_table = matrix(
-  c(priors, likelihood1, BayesNum1, Likelihood2, BayesNum2, posterior),
+  c(priors, likelihood1, BayesNum1, posterior1, Likelihood2, predictions),
   nrow = 5, ncol = 6,
   dimnames = list(
     hipoteses,
-    c('Prior 1', 'Likelihood1', 'BayesNum1', 'Likelihood2', 'BayesNum2', 'Posterior')
+    c('Prior 1', 'Likelihood1', 'BayesNum1', 'Posterior1', 'Likelihood2', 'Predict')
   )
 )
 
