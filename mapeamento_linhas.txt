@@ -1,0 +1,11 @@
+Mapeamento referente ao código presente em script.r
+
+linha 13 até linha 87: criação dos Histogramas, CDF e PDF
+linha 88 até linha 117: criação das Boxplot, cálculo da média e da variância
+linha 118 até linha 326: estimativas via MLE e criação dos gráficos das distribuições
+linha 327 até linha 416: criação dos QQPlots
+linha 417 até linha 491: Teste de Hipótese Komogorov-Smirnov
+linha 492 até linha 526: Coeficiente de Correlação Amostral e ScatterPlot
+linha 527 em diante: Inferência Bayesiana
+
+O código em script.r está comentado de forma que se consiga utilizar as abas de cada seção do código no RStudio.

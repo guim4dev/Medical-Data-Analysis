@@ -10,7 +10,7 @@ DadosMedicos <-
   )
 
 
-## Histograma e Distribuição Empírica das Variáveis ##
+#### Histograma e Distribuição Empírica das Variáveis ####
 bin = as.integer(1+3.3*log10(nrow(DadosMedicos)))
 
 #IDADE
@@ -85,7 +85,7 @@ png("CDFEmpirica/distempirica_VO2Max.png")
 plot(ecdf(DadosMedicos$VO2MedidoMáximo), main = 'CDF Empirica - VO2Max')
 dev.off()
 
-## Média, Variância e Boxplot das Variáveis ##
+#### Média, Variância e Boxplot das Variáveis ####
 
 #IDADE#
 media_idade = mean(DadosMedicos$IDADE)
@@ -115,7 +115,7 @@ png("BoxPlots/boxplot_VO2Max.png")
 boxplot(DadosMedicos$VO2MedidoMáximo, main = "Boxplot de VO2 Máx")
 dev.off()
 
-## Estimando Parametros via MLE ##
+#### Estimando Parametros via MLE ####
 ## Distribuicoes: Exponencial, Gaussiana, Lognormal e Weibull ##
 # Importando biblioteca EnvStats para calculo dos parametros da Weibull #
 library(EnvStats)
@@ -129,7 +129,6 @@ idade_exponencial <- function(x) {
   dexp(x, rate = idade_exponencial_lambda)
 }
 
-############
 #-Gaussiana-#
 
 #Estimativas via MLE
@@ -139,7 +138,6 @@ idade_gaussiana <- function(x) {
   dnorm(x, mean = idade_gaussiana_media, sd = sqrt(idade_gaussiana_sd2))
 }
 
-############
 #-LogNormal-#
 
 #Estimativas via MLE
@@ -149,7 +147,6 @@ idade_lognormal <- function(x) {
   dlnorm(x, meanlog = idade_lognormal_mu, sdlog = sqrt(idade_lognormal_sd2))
 }
 
-############
 #-Weibull-#
 
 #Rodar esta linha para obter os parametros shape e scale#
@@ -183,7 +180,6 @@ Peso_exponencial <- function(x) {
   dexp(x, rate = Peso_exponencial_lambda)
 }
 
-############
 #-Gaussiana-#
 
 #Estimativas via MLE
@@ -193,7 +189,6 @@ Peso_gaussiana <- function(x) {
   dnorm(x, mean = Peso_gaussiana_media, sd = sqrt(Peso_gaussiana_sd2))
 }
 
-############
 #-LogNormal-#
 
 #Estimativas via MLE
@@ -203,7 +198,6 @@ Peso_lognormal <- function(x) {
   dlnorm(x, meanlog = Peso_lognormal_mu, sdlog = sqrt(Peso_lognormal_sd2))
 }
 
-############
 #-Weibull-#
 
 #Rodar esta linha para obter os parametros shape e scale#
@@ -237,7 +231,6 @@ CargaFinal_exponencial <- function(x) {
   dexp(x, rate = CargaFinal_exponencial_lambda)
 }
 
-############
 #-Gaussiana-#
 
 #Estimativas via MLE
@@ -247,7 +240,6 @@ CargaFinal_gaussiana <- function(x) {
   dnorm(x, mean = CargaFinal_gaussiana_media, sd = sqrt(CargaFinal_gaussiana_sd2))
 }
 
-############
 #-LogNormal-#
 
 #Estimativas via MLE
@@ -257,7 +249,6 @@ CargaFinal_lognormal <- function(x) {
   dlnorm(x, meanlog = CargaFinal_lognormal_mu, sdlog = sqrt(CargaFinal_lognormal_sd2))
 }
 
-############
 #-Weibull-#
 
 #Rodar esta linha para obter os parametros shape e scale#
@@ -291,7 +282,6 @@ VO2Max_exponencial <- function(x) {
   dexp(x, rate = VO2Max_exponencial_lambda)
 }
 
-############
 #-Gaussiana-#
 
 #Estimativas via MLE
@@ -301,7 +291,6 @@ VO2Max_gaussiana <- function(x) {
   dnorm(x, mean = VO2Max_gaussiana_media, sd = sqrt(VO2Max_gaussiana_sd2))
 }
 
-############
 #-LogNormal-#
 
 #Estimativas via MLE
@@ -311,7 +300,6 @@ VO2Max_lognormal <- function(x) {
   dlnorm(x, meanlog = VO2Max_lognormal_mu, sd = sqrt(VO2Max_lognormal_sd2))
 }
 
-############
 #-Weibull-#
 
 #Rodar esta linha para obter os parametros shape e scale#
@@ -501,7 +489,7 @@ ks.test(DadosMedicos$VO2MedidoMáximo, 'plnorm', meanlog = VO2Max_lognormal_mu, 
 print ('Teste de hipótese - VO2 Máximo X Weibull')
 ks.test(DadosMedicos$VO2MedidoMáximo, 'pweibull', shape = VO2Max_weibull_shape, scale = VO2Max_weibull_scale)
 
-###### Coeficiente de Correlação Amostral e ScatterPlot#####
+#### Coeficiente de Correlação Amostral e ScatterPlot ####
 
 ## Idade e VO2Máximo ##
 correlacao_idade_VO2Max = cor(DadosMedicos$IDADE, DadosMedicos$VO2MedidoMáximo)
@@ -536,7 +524,7 @@ dev.off()
 
 coeficientes_regressao_CargaFinal = modelo_regressao_CargaFinal$coefficients
 
-##### Bayesian Inference ######
+#### Bayesian Inference #####
 ## Variavel escolhida = Carga Final ##
 # intervalos: 30.0 110.4 190.8 271.2 351.6 432.0 #
 
