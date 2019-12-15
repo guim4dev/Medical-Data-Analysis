@@ -528,7 +528,7 @@ coeficientes_regressao_CargaFinal = modelo_regressao_CargaFinal$coefficients
 ## Variavel escolhida = Carga Final ##
 # intervalos: 30.0 110.4 190.8 271.2 351.6 432.0 #
 
-hipoteses = c('H(30.0 - 110.4)', 'H(110.4 - 190.8)', 'H(190.8 - 271.2)', 'H(271.2 - 351.6)', 'H(351.6 432.0)')
+hipoteses = c('H(30.0 - 110.4)', 'H(110.4 - 190.8)', 'H(190.8 - 271.2)', 'H(271.2 - 351.6)', 'H(351.6 - 432.0)')
 #Abaixo de 35#
 
 dentro_do_intervalo = length(DadosMedicos$CargaFinal[DadosMedicos$CargaFinal >= 30.000 & DadosMedicos$CargaFinal < 110.4])
